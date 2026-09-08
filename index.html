@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LUMEN - Premium Glassmorphism Tech & Lifestyle E-Commerce Store with Firebase Authentication">
+  <title>LUMEN | Next-Gen Glassmorphism Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Ambient Animated Light Orbs for Glassmorphism Refraction -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Sticky Glass Navigation Bar -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar glass-panel">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-logo">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <span>LUMEN</span>
+        </a>
+
+        <!-- Desktop Navigation Links (Collapsed on Mobile) -->
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#catalog" class="nav-link">Products</a></li>
+          <li><a href="#categories" class="nav-link">Categories</a></li>
+          <li><a href="#features" class="nav-link">Experience</a></li>
+        </ul>
+
+        <!-- Action Controls Group -->
+        <div class="nav-actions">
+          <!-- Light / Dark Theme Switcher Button -->
+          <button id="theme-toggle" class="btn-icon theme-toggle-btn" aria-label="Toggle Light or Dark Theme" title="Toggle Light / Dark Theme">
+            <!-- Moon Icon (shown in dark theme) -->
+            <svg class="theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun Icon (shown in light theme) -->
+            <svg class="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <!-- Shopping Cart Trigger Button with Counter Badge -->
+          <button id="cart-toggle-btn" class="btn-icon" aria-label="Open Shopping Cart" title="Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-badge hidden">0</span>
+          </button>
+
+          <!-- Desktop User Auth State Button -->
+          <div id="desktop-auth-container" class="nav-auth-desktop auth-btn-container">
+            <!-- Populated dynamically via auth.js -->
+            <button id="btn-open-auth-desktop" class="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>Sign In</span>
+            </button>
+          </div>
+
+          <!-- User Menu Dropdown (Desktop) -->
+          <div id="user-menu-dropdown" class="user-menu-dropdown glass-panel">
+            <div class="user-dropdown-header">
+              <div id="dropdown-user-name" class="user-dropdown-name">User Name</div>
+              <div id="dropdown-user-email" class="user-dropdown-email">user@example.com</div>
+            </div>
+            <button id="btn-logout-desktop" class="user-dropdown-item danger">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              Sign Out
+            </button>
+          </div>
+
+          <!-- Mobile Hamburger Menu Button (Visible only on mobile screens) -->
+          <button id="mobile-menu-btn" class="hamburger-btn" aria-label="Toggle Mobile Navigation Menu" aria-expanded="false">
+            <span class="hamburger-line line-top"></span>
+            <span class="hamburger-line line-mid"></span>
+            <span class="hamburger-line line-bot"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Backdrop Overlay -->
+  <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Screen Navigation Drawer (Holds Navigation Buttons on Mobile) -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation Menu">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="brand-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <span>LUMEN</span>
+      </div>
+      <button id="mobile-drawer-close" class="btn-icon" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Auth Profile Card -->
+    <div id="mobile-auth-section" class="glass-card-nested" style="padding: 1rem; margin-bottom: 1.5rem;">
+      <!-- Populated dynamically via auth.js -->
+      <button id="btn-open-auth-mobile" class="btn-primary" style="width: 100%; justify-content: center;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        Sign In / Register
+      </button>
+    </div>
+
+    <!-- Navigation Buttons within Menu Icon -->
+    <ul class="mobile-nav-links">
+      <li>
+        <a href="#hero" class="mobile-nav-link active">
+          <span>Home</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#catalog" class="mobile-nav-link">
+          <span>All Products</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#categories" class="mobile-nav-link">
+          <span>Categories</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </li>
+      <li>
+        <a href="#features" class="mobile-nav-link">
+          <span>Experience</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Mobile Drawer Footer with Quick Theme Toggle -->
+    <div class="mobile-drawer-footer">
+      <div class="mobile-theme-row">
+        <span>Display Mode</span>
+        <button id="mobile-theme-toggle" class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+          Toggle Theme
+        </button>
+      </div>
+      <p style="font-size: 0.78rem; color: var(--text-muted); text-align: center;">
+        Glassmorphic Design • Powered by Firebase Auth
+      </p>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981;"></span>
+              Next-Gen Glassmorphic Collection
+            </div>
+            <h1 class="hero-title">
+              Elegance in Every <span class="text-gradient">Layer of Glass</span>.
+            </h1>
+            <p class="hero-description">
+              Discover curated futuristic electronics, wearable computing, and bespoke desktop hardware encased in pristine frosted aesthetics.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#catalog" class="btn-primary">
+                <span>Explore Catalog</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <button id="hero-quick-login-btn" class="btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                </svg>
+                <span>Connect Firebase</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Glass Hero Card Showcase -->
+          <div class="hero-visual">
+            <div class="glass-card hero-card-preview">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Aura Headphones Showcase" class="hero-preview-img">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <span class="product-category-tag">Featured Tech</span>
+                  <h3 style="font-size:1.25rem; font-weight:700;">Aura SoundScape ANC</h3>
+                </div>
+                <div style="font-size:1.4rem; font-weight:800; color:var(--text-primary);">$299.99</div>
+              </div>
+              <div class="floating-glass-pill">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>4.9 / 5.0 Rating</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Catalog & Controls Section -->
+    <section id="catalog" class="catalog-section">
+      <div class="container">
+        <!-- Section Title Header -->
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Exclusive Products</h2>
+            <p class="section-subtitle">Engineered with high performance and translucent craftsmanship</p>
+          </div>
+        </div>
+
+        <!-- Filter & Search Glass Bar -->
+        <div id="categories" class="filter-bar glass-panel">
+          <!-- Category Filter Pills -->
+          <div class="category-pills" role="tablist" aria-label="Product Categories">
+            <button class="category-btn active" data-category="All">All Items</button>
+            <button class="category-btn" data-category="Audio">Audio</button>
+            <button class="category-btn" data-category="Wearables">Wearables</button>
+            <button class="category-btn" data-category="Accessories">Accessories</button>
+            <button class="category-btn" data-category="Electronics">Electronics</button>
+          </div>
+
+          <!-- Real-Time Search Bar -->
+          <div class="search-box-wrapper">
+            <svg class="search-icon-inside" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" id="product-search-input" class="search-input" placeholder="Search products..." aria-label="Search products">
+          </div>
+        </div>
+
+        <!-- Products Grid (Rendered Dynamically via JS) -->
+        <div id="products-grid" class="products-grid">
+          <!-- Injected via app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience / Features Banner -->
+    <section id="features" class="container" style="padding-bottom: 5rem;">
+      <div class="glass-panel" style="padding: 3rem 2rem;">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 3rem;">
+          <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem;">Why LUMEN?</h2>
+          <p style="color: var(--text-secondary);">Designed from ground up with ultra-modern web technologies and cloud identity</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem;">
+          <div class="glass-card-nested" style="padding: 1.75rem; text-align: center;">
+            <div style="width: 50px; height: 50px; border-radius: 14px; background: var(--accent-gradient); display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 1.25rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Firebase Auth</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Seamless Google 1-Click popup authentication and Email/Password user management.</p>
+          </div>
+          <div class="glass-card-nested" style="padding: 1.75rem; text-align: center;">
+            <div style="width: 50px; height: 50px; border-radius: 14px; background: var(--accent-gradient); display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 1.25rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Light / Dark Theme</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Adaptive color tokens, ambient glowing orbs, and persistent theme settings.</p>
+          </div>
+          <div class="glass-card-nested" style="padding: 1.75rem; text-align: center;">
+            <div style="width: 50px; height: 50px; border-radius: 14px; background: var(--accent-gradient); display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 1.25rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+            </div>
+            <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem;">Mobile-First Menu</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Intuitive hamburger drawer collapsing all navigation actions seamlessly on mobile screens.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-Out Shopping Cart Drawer -->
+  <div id="cart-drawer-backdrop" class="cart-drawer-backdrop" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <h3 class="cart-title">Your Cart</h3>
+      </div>
+      <button id="cart-drawer-close" class="btn-icon" aria-label="Close Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Free Shipping Indicator -->
+    <div class="shipping-meter-box glass-card-nested">
+      <div id="shipping-status-text" class="shipping-meter-text">
+        Add <strong>$250.00</strong> more for <strong>FREE Shipping</strong>
+      </div>
+      <div class="progress-track">
+        <div id="shipping-progress-bar" class="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scroll Area -->
+    <div id="cart-items-list" class="cart-items-list">
+      <!-- Injected via cart.js -->
+    </div>
+
+    <!-- Empty Cart State -->
+    <div id="cart-empty-state" class="cart-empty-state">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.5;">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <p style="font-weight: 600;">Your cart is currently empty</p>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Explore our catalog to add modern gear!</p>
+    </div>
+
+    <!-- Cart Footer with Totals -->
+    <div id="cart-footer" class="cart-footer hidden">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal" style="font-weight: 600;">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Shipping Estimate</span>
+        <span style="color: #10b981; font-weight: 600;">Calculated at checkout</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button id="btn-checkout" class="btn-primary btn-checkout">
+        Proceed to Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Google Firebase Authentication Modal -->
+  <div id="auth-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="glass-card auth-modal-card">
+      <button id="btn-close-auth-modal" class="btn-icon btn-close-modal" aria-label="Close Auth Dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div class="brand-icon" style="margin: 0 auto 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.45rem; font-weight: 800;">Welcome to LUMEN</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary);">Connect with your Google or Email account</p>
+      </div>
+
+      <!-- Demo Mode Helper Notice -->
+      <div id="demo-mode-alert" class="demo-mode-pill">
+        ⚡ <strong>Live or Interactive Mode</strong>: Click Google Sign In to test immediately. (To bind your own cloud backend, set keys in <code>js/firebase-config.js</code>).
+      </div>
+
+      <!-- Google Sign In Button (Priority) -->
+      <button id="btn-google-auth" class="btn-google">
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+        </svg>
+        <span>Continue with Google</span>
+      </button>
+
+      <div class="divider">
+        <span>or use email</span>
+      </div>
+
+      <!-- Auth Tabs: Sign In / Create Account -->
+      <div class="auth-tabs glass-card-nested">
+        <button id="tab-login" class="auth-tab-btn active">Sign In</button>
+        <button id="tab-signup" class="auth-tab-btn">Create Account</button>
+      </div>
+
+      <!-- Error Notification Banner -->
+      <div id="auth-error-msg" class="auth-error-banner"></div>
+
+      <!-- Email Auth Form -->
+      <form id="auth-form">
+        <div id="form-group-name" class="form-group hidden">
+          <label class="form-label" for="auth-name">Full Name</label>
+          <input type="text" id="auth-name" class="form-input" placeholder="e.g. Maya Lin">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="auth-email">Email Address</label>
+          <input type="email" id="auth-email" class="form-input" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="auth-password">Password</label>
+          <input type="password" id="auth-password" class="form-input" placeholder="••••••••" required minlength="6">
+        </div>
+
+        <button type="submit" id="btn-submit-auth" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
+          Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Floating Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span>LUMEN</span>
+          </div>
+          <p>The pinnacle of minimalist aesthetic engineering, frosted glass visual architecture, and seamless commerce.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <ul class="footer-links">
+            <li><a href="#catalog">Audio Devices</a></li>
+            <li><a href="#catalog">Smart Wearables</a></li>
+            <li><a href="#catalog">Workspace Gear</a></li>
+            <li><a href="#catalog">Storage & Peripherals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Features</h5>
+          <ul class="footer-links">
+            <li><a href="#theme-toggle">Light / Dark Theme</a></li>
+            <li><a href="#btn-google-auth">Firebase Google Auth</a></li>
+            <li><a href="#mobile-drawer">Mobile Navigation</a></li>
+            <li><a href="#cart-drawer">Glass Cart Drawer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Security</h5>
+          <ul class="footer-links">
+            <li><a href="#">Firebase Identity</a></li>
+            <li><a href="#">SSL Encrypted</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 LUMEN Technologies Inc. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <span>Glassmorphism UI Engine</span>
+          <span>Firebase v10 Modular</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Controllers (ES Module) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
