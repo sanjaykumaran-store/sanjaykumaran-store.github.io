@@ -299,21 +299,21 @@ class AuthUI {
       this.tabSignup.addEventListener('click', () => this.switchTab('signup'));
     }
 
-    // Google Sign-In
+    // Google Sign-In (redirect-based: this click navigates the page away
+    // to Google and back, so there's no immediate result to react to here.
+    // Success is handled separately, after redirect, in the subscribe()
+    // callback below.)
     if (this.googleBtn) {
       this.googleBtn.addEventListener('click', async () => {
         this.clearError();
         this.googleBtn.style.opacity = '0.7';
         const res = await authController.signInWithGoogle();
-        this.googleBtn.style.opacity = '1';
-
-        if (res.success) {
-          this.close();
-          const name = res.user.displayName || 'Google User';
-          showToast(`Welcome back, ${name}! Logged in with Google.`, 'success');
-        } else {
+        if (!res.success) {
+          this.googleBtn.style.opacity = '1';
           this.showError(res.error || 'Failed to authenticate with Google');
         }
+        // On success the page is already navigating to Google; nothing
+        // more to do here.
       });
     }
 
@@ -361,6 +361,15 @@ class AuthUI {
 
     // Subscribe to Auth state changes to update Nav UI
     authController.subscribe((user) => this.renderAuthState(user));
+
+    // Fires specifically when the page just came back from a Google
+    // signInWithRedirect — this is how we close the modal / show the
+    // welcome toast now that the sign-in can't finish synchronously.
+    authController.onGoogleRedirectSuccess((user) => {
+      this.close();
+      const name = user.displayName || 'Google User';
+      showToast(`Welcome back, ${name}! Logged in with Google.`, 'success');
+    });
   }
 
   renderAuthState(user) {
