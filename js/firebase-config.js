@@ -36,14 +36,12 @@ import {
  * -------------------------------------------------------------
  */
 export const firebaseConfig = {
-  apiKey: "AIzaSyA3IC4H7aBLzW1id1bsxISQMYZFvIR20Bo",
-  authDomain: "sk-store-76907.firebaseapp.com",
-  databaseURL: "https://sk-store-76907-default-rtdb.firebaseio.com",
-  projectId: "sk-store-76907",
-  storageBucket: "sk-store-76907.firebasestorage.app",
-  messagingSenderId: "817773933826",
-  appId: "1:817773933826:web:60c3dd8dddbc6e8e8e7e1b",
-  measurementId: "G-5QEGZ0ZNHB"
+  apiKey: "YOUR_API_KEY_HERE",
+  authDomain: "your-app-id.firebaseapp.com",
+  projectId: "your-app-id",
+  storageBucket: "your-app-id.appspot.com",
+  messagingSenderId: "123456789012",
+  appId: "1:123456789012:web:abcdef123456"
 };
 
 // Auto-detect if real credentials were provided or if placeholder mode is active

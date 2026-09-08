@@ -167,6 +167,19 @@ class CartUI {
     if (!this.cartBtn || !this.drawer) return;
 
     this.cartBtn.addEventListener('click', () => this.open());
+
+    // Mobile drawer's "Cart" entry opens the same cart panel and closes
+    // the mobile nav drawer first so they don't overlap.
+    const mobileCartBtn = document.getElementById('mobile-cart-btn');
+    if (mobileCartBtn) {
+      mobileCartBtn.addEventListener('click', () => {
+        document.getElementById('mobile-drawer')?.classList.remove('active');
+        document.getElementById('mobile-drawer-backdrop')?.classList.remove('active');
+        document.getElementById('mobile-menu-btn')?.classList.remove('active');
+        document.body.style.overflow = '';
+        this.open();
+      });
+    }
     if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
     if (this.backdrop) this.backdrop.addEventListener('click', () => this.close());
 

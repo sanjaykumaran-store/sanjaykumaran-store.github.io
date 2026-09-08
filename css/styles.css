@@ -810,7 +810,7 @@ body {
   color: var(--text-primary);
   padding: 0.6rem 1rem 0.6rem 2.4rem;
   border-radius: 12px;
-  font-size: 0.9rem;
+  font-size: 16px; /* Kept at/above 16px so mobile browsers don't auto-zoom on focus */
   outline: none;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -1315,7 +1315,7 @@ body {
   border: 1px solid var(--input-border);
   color: var(--text-primary);
   border-radius: 10px;
-  font-size: 0.95rem;
+  font-size: 16px; /* Kept at/above 16px so mobile browsers don't auto-zoom on focus */
   outline: none;
   transition: border-color var(--transition-fast);
 }
@@ -1511,6 +1511,13 @@ body {
 
   .hamburger-btn {
     display: flex; /* Menu button visible on mobile screen */
+  }
+
+  /* Only the hamburger stays in the mobile top bar — theme toggle and
+     cart move into the drawer so the bar itself shows just the 3-line icon. */
+  .theme-toggle-btn,
+  #cart-toggle-btn {
+    display: none;
   }
 
   .site-header {

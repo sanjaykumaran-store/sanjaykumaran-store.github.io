@@ -95,5 +95,101 @@ export const products = [
     badge: 'Ergonomic',
     image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=800&q=80',
     description: 'Natural handshake 57-degree vertical grip that alleviates wrist strain, featuring optical tracking and dual Bluetooth.'
+  },
+  {
+    id: 'prod-9',
+    name: 'Vertex 4K Ultra-Wide Curved Monitor',
+    category: 'Electronics',
+    price: 649.00,
+    originalPrice: 749.00,
+    rating: 4.8,
+    reviewsCount: 156,
+    badge: 'Staff Pick',
+    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80',
+    description: '34-inch 1000R curved panel with 144Hz refresh rate, HDR600 brightness, and USB-C 90W single-cable docking.'
+  },
+  {
+    id: 'prod-10',
+    name: 'Meridian Leather Laptop Backpack',
+    category: 'Bags',
+    price: 139.00,
+    originalPrice: 169.00,
+    rating: 4.7,
+    reviewsCount: 203,
+    badge: 'New',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+    description: 'Water-resistant full-grain leather with a padded 16-inch laptop sleeve, hidden anti-theft pocket, and USB pass-through port.'
+  },
+  {
+    id: 'prod-11',
+    name: 'Solstice Portable Bluetooth Speaker',
+    category: 'Audio',
+    price: 99.99,
+    originalPrice: 129.99,
+    rating: 4.6,
+    reviewsCount: 318,
+    badge: 'Hot Deal',
+    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80',
+    description: '360-degree room-filling sound, IP67 waterproofing, 24-hour battery, and party-pairing with two additional units.'
+  },
+  {
+    id: 'prod-12',
+    name: 'Orbit Fast-Charge Power Bank 20000mAh',
+    category: 'Accessories',
+    price: 59.99,
+    originalPrice: 79.99,
+    rating: 4.8,
+    reviewsCount: 501,
+    badge: 'Best Seller',
+    image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=800&q=80',
+    description: '65W USB-C PD fast charging, digital charge display, and enough capacity for 4 full phone charges on the go.'
+  },
+  {
+    id: 'prod-13',
+    name: 'Cascade Adjustable Standing Desk Converter',
+    category: 'Furniture',
+    price: 229.00,
+    originalPrice: 269.00,
+    rating: 4.7,
+    reviewsCount: 174,
+    badge: '',
+    image: 'https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&w=800&q=80',
+    description: 'Gas-spring height adjustment from sitting to standing in seconds, with a dual-tier layout for monitor and keyboard.'
+  },
+  {
+    id: 'prod-14',
+    name: 'Halo Smart LED Desk Lamp',
+    category: 'Home',
+    price: 69.99,
+    originalPrice: 89.99,
+    rating: 4.5,
+    reviewsCount: 132,
+    badge: 'New',
+    image: 'https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?auto=format&fit=crop&w=800&q=80',
+    description: 'Adaptive brightness with circadian color temperature shifting, wireless charging base, and touch-gesture controls.'
+  },
+  {
+    id: 'prod-15',
+    name: 'Terra Insulated Stainless Steel Bottle',
+    category: 'Lifestyle',
+    price: 34.99,
+    originalPrice: 44.99,
+    rating: 4.9,
+    reviewsCount: 620,
+    badge: 'Hot Deal',
+    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=80',
+    description: 'Double-wall vacuum insulation keeps drinks cold 24 hours or hot 12 hours, with a leakproof flip-lock lid.'
+  },
+  {
+    id: 'prod-16',
+    name: 'Flux Wireless Charging Stand Trio',
+    category: 'Accessories',
+    price: 79.00,
+    originalPrice: 99.00,
+    rating: 4.6,
+    reviewsCount: 118,
+    badge: 'Staff Pick',
+    image: 'https://images.unsplash.com/photo-1591290619762-c8f5b6c14b98?auto=format&fit=crop&w=800&q=80',
+    description: 'MagSafe-compatible 3-in-1 stand for phone, watch, and earbuds with a foldable travel-friendly design.'
   }
 ];
