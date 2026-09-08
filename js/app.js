@@ -1,4 +1,4 @@
-// LUMEN E-Commerce Master Application Controller
+// SK E-Commerce Master Application Controller
 import { products } from './products.js';
 import { cartController } from './cart.js';
 import { authController } from './auth.js';
@@ -280,9 +280,6 @@ class AuthUI {
 
     const mobileOpenBtn = document.getElementById('btn-open-auth-mobile');
     if (mobileOpenBtn) mobileOpenBtn.addEventListener('click', () => this.open());
-
-    const heroQuickBtn = document.getElementById('hero-quick-login-btn');
-    if (heroQuickBtn) heroQuickBtn.addEventListener('click', () => this.open());
 
     // Close controls
     if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.close());
@@ -627,5 +624,5 @@ document.addEventListener('DOMContentLoaded', () => {
   new AuthUI();
   new CatalogUI();
 
-  console.log("%cLUMEN Store Initialized", "font-weight:bold;font-size:14px;color:#6366f1;");
+  console.log("%cSK Store Initialized", "font-weight:bold;font-size:14px;color:#6366f1;");
 });

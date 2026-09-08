@@ -102,6 +102,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -110,6 +112,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  max-width: 100%;
   overflow-x: hidden;
   position: relative;
   transition: background-color var(--transition-normal), color var(--transition-normal);
@@ -1500,7 +1503,7 @@ body {
 }
 
 /* Critical Mobile Breakpoint: Collapse Nav Links into Menu Icon */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .nav-links {
     display: none; /* Hidden on mobile screen */
   }
