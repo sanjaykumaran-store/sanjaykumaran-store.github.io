@@ -4,8 +4,7 @@ import {
   db,
   googleProvider, 
   isConfigured, 
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword, 
   signOut, 
@@ -46,8 +45,7 @@ class AuthController {
     this.init();
   }
 
-  // Fires only when a user just landed back on the page after a Google
-  // signInWithRedirect completed — not on every ordinary page load.
+  // Fires when a Google popup sign-in completes successfully.
   onGoogleRedirectSuccess(callback) {
     this.redirectListeners.push(callback);
   }
@@ -67,20 +65,6 @@ class AuthController {
         }
         this.notifyListeners();
       });
-
-      // Handle the return trip from signInWithRedirect (Google sign-in).
-      // This resolves once, right after Firebase redirects the user back
-      // to this page with the completed auth result.
-      getRedirectResult(auth)
-        .then((result) => {
-          if (result && result.user) {
-            ensureUserProfile(result.user);
-            this.redirectListeners.forEach(cb => cb(result.user));
-          }
-        })
-        .catch((error) => {
-          console.error('Google redirect sign-in error:', error);
-        });
     } else {
       // Check for saved demo session in localStorage
       const savedSession = localStorage.getItem('glass_demo_auth_user');
@@ -104,16 +88,16 @@ class AuthController {
     this.listeners.forEach(cb => cb(this.currentUser));
   }
 
-  // Google Sign-In via redirect (avoids popup-closed-by-user issues caused
-  // by browser third-party-cookie / COOP restrictions on static sites).
-  // This call navigates the whole page away to Google, then back — the
-  // actual result is picked up by getRedirectResult() in init() above.
+  // Google Sign-In via popup. Opens a Google account chooser in a popup
+  // window and resolves immediately with the signed-in user — no page
+  // navigation, no dependence on redirect-result storage.
   async signInWithGoogle() {
     if (isConfigured && auth) {
       try {
-        await signInWithRedirect(auth, googleProvider);
-        // Execution stops here — the page is navigating away.
-        return { success: true, pending: true };
+        const result = await signInWithPopup(auth, googleProvider);
+        await ensureUserProfile(result.user);
+        this.redirectListeners.forEach(cb => cb(result.user));
+        return { success: true, user: result.user };
       } catch (error) {
         console.error("Google Auth Error:", error);
         return { success: false, error: error.message };
