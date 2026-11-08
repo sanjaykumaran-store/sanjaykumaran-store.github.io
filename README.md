@@ -1,4 +1,4 @@
-# LUMEN — Next-Gen Glassmorphic E-Commerce Web Application
+# LUMEN — Next-Gen Glassmorphic E-Commerce Web Applications
 
 A premium, modern e-commerce web platform built with frosted **Glassmorphism** visual aesthetics, **Google Firebase Authentication**, responsive **mobile drawer navigation**, and a reactive **Light / Dark theme toggle**.
 
